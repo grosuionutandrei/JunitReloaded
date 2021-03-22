@@ -34,6 +34,41 @@ public class StringExpression implements Expression {
 
 		return Integer.parseInt(s);
 	}
+
+	public static BinaryOperator readAsBinaryOperator(String s){
+		if(s.length()==0){
+			throw new ValidationException("No value was entered");
+		}
+		if(!isBinaryOperator(s)){
+			throw new ValidationException("Value '" +s +  " is not a binary ");
+		}
+		switch (s) {
+			case "+":
+				return BinaryOperator.ADD;
+			case "-":
+				return BinaryOperator.SUBSTRACT;
+			case "*":
+				return BinaryOperator.MULTIPLY;
+			case "%":
+				return BinaryOperator.MODULUS;
+		}
+		return BinaryOperator.DIVIDE;
+
+	}
+	public static boolean isBinaryOperator(String string ){
+		try {
+			BinaryOperator[] binaryOperators = BinaryOperator.values();
+			for(BinaryOperator binary : binaryOperators){
+				if(string.equals(binary.getSymbol())){
+					return true;
+				}
+			}
+			return  false;
+		}catch (RuntimeException e){
+			throw new RuntimeException(
+					"Error checking if '" + string + "' is a Binary operator " , e );
+		}
+	}
 	
 	public static boolean isNumber(String str) {
 		try {
