@@ -15,7 +15,7 @@ public class StringExpression implements Expression {
 		for (int i=0; i<tokens.length; ++i) {
 			elements.add(i%2==0
 					? readAsNumber(tokens[i]) 
-					: tokens[i]);
+					: readAsBinaryOperator(tokens[i]);
 		}
 		if(elements.size()%2==0){
 			throw new ValidationException("Number of tokens is incorrect");

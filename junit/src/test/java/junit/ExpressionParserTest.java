@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.siit.ExpressionEvaluator;
 import org.siit.StringExpression;
 import org.siit.ValidationException;
 
@@ -63,17 +64,20 @@ public class ExpressionParserTest {
 	
 	//implement the following tests
 	//that were moved from evaulator test class
+	private int parseAndEvaluate(String s) {
+		StringExpression e = new StringExpression(s);
+		return ExpressionEvaluator.evaluate(e);
+	}
+	@Test
+	public void testOperatorAndMultipleSpaces() {
+		Assert.assertEquals(
+				47, parseAndEvaluate("45    + 2"));
+	}
 	
-//	@Test
-//	public void testOperatorAndMultipleSpaces() {
-//		Assert.assertEquals(
-//				47, parseAndEvaluate("45    + 2"));
-//	}
-	
-//	@Test
-//	public void testConstantWithWhitespace() {
-//		Assert.assertEquals(
-//				324, parseAndEvaluate("  324 "));
-//	}
+	@Test
+	public void testConstantWithWhitespace() {
+		Assert.assertEquals(
+				324, parseAndEvaluate("  324 "));
+	}
 	
 }
