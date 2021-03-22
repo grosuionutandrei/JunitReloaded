@@ -11,6 +11,7 @@ public enum BinaryOperator {
 	private final String symbol;
 	private final String verb;
 
+
 	BinaryOperator(String symbol, String word) {
 		this.symbol = symbol;
 		this.verb = word;

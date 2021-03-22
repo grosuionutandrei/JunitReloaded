@@ -1,11 +1,13 @@
 package junit;
 
+import static org.siit.BinaryOperator.ADD;
 import static org.siit.BinaryOperator.DIVIDE;
 
 import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.siit.ExpressionEvaluator;
 import org.siit.StringExpression;
 import org.siit.ValidationException;
 
@@ -27,7 +29,7 @@ public class ExpressionParserTest {
 	public void oneBinaryOperandTest() {
 		StringExpression e = new StringExpression("3 + 2");
 		Assert.assertEquals(
-				Arrays.asList(3, "+", 2), e.getElements());
+				Arrays.asList(3, ADD, 2), e.getElements());
 	}
 	
 	@Test(expected = ValidationException.class)
@@ -63,17 +65,23 @@ public class ExpressionParserTest {
 	
 	//implement the following tests
 	//that were moved from evaulator test class
-	
-//	@Test
-//	public void testOperatorAndMultipleSpaces() {
-//		Assert.assertEquals(
-//				47, parseAndEvaluate("45    + 2"));
-//	}
-	
-//	@Test
-//	public void testConstantWithWhitespace() {
-//		Assert.assertEquals(
-//				324, parseAndEvaluate("  324 "));
-//	}
-	
+	private int parseAndEvaluate(String s) {
+		StringExpression e = new StringExpression(s);
+		return ExpressionEvaluator.evaluate(e);
+	}
+
+	@Test
+	public void testOperatorAndMultipleSpaces() {
+
+		Assert.assertEquals(
+				47, parseAndEvaluate("45    + 2"));
+	}
+
+	@Test
+	public void testConstantWithWhitespace() {
+		Assert.assertEquals(
+				324, parseAndEvaluate("  324 "));
+	}
+
+
 }

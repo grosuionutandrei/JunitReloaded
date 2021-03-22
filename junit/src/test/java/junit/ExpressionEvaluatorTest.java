@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.siit.BinaryOperator;
 import org.siit.Expression;
 import org.siit.ExpressionEvaluator;
 
@@ -39,7 +40,7 @@ public class ExpressionEvaluatorTest {
 	@Test
 	public void testSimpleAddition() {
 		Assert.assertEquals(
-				5, evaluate(3, "+", 2));
+				5, evaluate(3, BinaryOperator.ADD, 2));
 	}
 	
 }
