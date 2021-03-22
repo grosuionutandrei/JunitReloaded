@@ -8,11 +8,12 @@ public class ExpressionEvaluator {
 	public static int evaluate(Expression expression) {
 		List<Object> elements = expression.getElements();
 		int result = (int) elements.get(0);
-		for (int i=0; i<(elements.size()-1)/2; ++i) {
-			result = evalBinary(
-					(String) elements.get(i*2+1), 
-					result, 
-					(int) elements.get(i*2+2));
+		BinaryOperator operator;
+		int operand;
+		for(int i =2; i< elements.size();i+=2){
+			operator = (BinaryOperator) elements.get(i-1);
+			operand = (int) elements.get(i);
+			result = evalBinary(operator,result,operand);
 		}
 		return result;
 	}
