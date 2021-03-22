@@ -10,11 +10,15 @@ public class StringExpression implements Expression {
 	public StringExpression(String expression) {
 		String[] tokens = expression.trim().split("\\s+");
 		elements = new ArrayList<>();
+
 		
 		for (int i=0; i<tokens.length; ++i) {
 			elements.add(i%2==0
 					? readAsNumber(tokens[i]) 
 					: tokens[i]);
+		}
+		if(elements.size()%2==0){
+			throw new ValidationException("Number of tokens is incorrect");
 		}
 	}
 	
